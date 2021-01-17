@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minefield/screens/home.dart';
+import 'package:minefield/screens/splash_screen/splash_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'MineField',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: MySplashScreen(),
     );
   }
 }

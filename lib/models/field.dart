@@ -11,9 +11,11 @@ class Field {
   bool _mined = false;
   bool _exploded = false;
 
-  Field({@required this.myRow, @required this.myColumn});
+  Field({
+    @required this.myRow,
+    @required this.myColumn,
+  });
 
-  //Check neighbors
   void addNeighbor(Field neighbor) {
     final deltaRow = (myRow - neighbor.myRow).abs();
     final deltaColumn = (myColumn - neighbor.myColumn).abs();
@@ -21,16 +23,17 @@ class Field {
     if (deltaRow == 0 && deltaColumn == 0) {
       return;
     }
-    if (deltaRow <= 1 && deltaColumn < 1) {
+
+    if (deltaRow <= 1 && deltaColumn <= 1) {
       neighbors.add(neighbor);
     }
   }
 
-  //Open Mines
   void toOpen() {
     if (_opened) {
       return;
     }
+
     _opened = true;
 
     if (_mined) {
@@ -38,13 +41,11 @@ class Field {
       throw ExceptionExplosotion();
     }
 
-    //recursividade - If it's save will open more fields
     if (saveNeighborhood) {
-      neighbors.forEach((n) => n.toOpen());
+      neighbors.forEach((v) => v.toOpen());
     }
   }
 
-  //reveal bombs
   void revealBomb() {
     if (_mined) {
       _opened = true;
@@ -55,7 +56,7 @@ class Field {
     _mined = true;
   }
 
-  void switchMarket() {
+  void changeMark() {
     _marked = !_marked;
   }
 
@@ -66,7 +67,6 @@ class Field {
     _exploded = false;
   }
 
-  //getter mined
   bool get mined {
     return _mined;
   }
@@ -79,23 +79,21 @@ class Field {
     return _opened;
   }
 
-  bool get market {
+  bool get marked {
     return _marked;
   }
 
   bool get solved {
-    bool mineAndMarket = mined && market;
+    bool minedAndMarked = mined && marked;
     bool saveAndOpened = !mined && opened;
-    return mineAndMarket || saveAndOpened;
+    return minedAndMarked || saveAndOpened;
   }
 
-  //Save Neighborhood
   bool get saveNeighborhood {
-    return neighbors.every((n) => !n._mined);
+    return neighbors.every((n) => !n.mined);
   }
 
-  //calculate mines
-  int get minesInTheNeighborhood {
+  int get qtminesintheNeighborhood {
     return neighbors.where((n) => n.mined).length;
   }
 }

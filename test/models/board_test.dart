@@ -1,9 +1,9 @@
-import 'package:flutter_test/flutter_test.dart';
-import 'package:minefield/models/board.dart';
+/* import 'package:flutter_test/flutter_test.dart';
+import 'package:minefield/models/board_model.dart';
 
 main() {
   test('Win Game', () {
-    Board board = Board(
+    BoardModel board = BoardModel(
       myRows: 2,
       myColumns: 2,
       qtBombs: 0,
@@ -21,3 +21,4 @@ main() {
     expect(board.solved, isTrue);
   });
 }
+ */

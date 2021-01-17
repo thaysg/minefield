@@ -3,14 +3,14 @@ import 'dart:math';
 import 'field.dart';
 import 'package:flutter/foundation.dart';
 
-class Board {
+class MineBoard {
   final int myRows;
   final int myColumns;
   final int qtBombs;
 
   final List<Field> _fields = [];
 
-  Board({
+  MineBoard({
     @required this.myRows,
     @required this.myColumns,
     @required this.qtBombs,
@@ -55,7 +55,7 @@ class Board {
     while (sorted < qtBombs) {
       int i = Random().nextInt(_fields.length);
 
-      if (_fields[i].mined) {
+      if (!_fields[i].mined) {
         sorted++;
         _fields[i].toMine();
       }
